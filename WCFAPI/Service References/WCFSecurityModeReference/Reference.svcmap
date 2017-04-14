@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="445472b8-a12c-4418-ad12-09193bd1c46e" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="net.tcp://vdi-v-tazho.fareast.corp.microsoft.com/WCFSecurityMode/WCFSecurityMode.svc/mex" Protocol="mex" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="service.wsdl" MetadataType="Wsdl" ID="bb69e105-92cf-4318-8ca9-b2d42d255db8" SourceId="1" SourceUrl="net.tcp://vdi-v-tazho.fareast.corp.microsoft.com/WCFSecurityMode/WCFSecurityMode.svc/mex" />
+    <MetadataFile FileName="service.xsd" MetadataType="Schema" ID="e61005a1-d7c4-4e52-87e0-64f99e931bb2" SourceId="1" SourceUrl="net.tcp://vdi-v-tazho.fareast.corp.microsoft.com/WCFSecurityMode/WCFSecurityMode.svc/mex" />
+    <MetadataFile FileName="service1.xsd" MetadataType="Schema" ID="029ae689-ceea-47b8-8d66-f2222f294d79" SourceId="1" SourceUrl="net.tcp://vdi-v-tazho.fareast.corp.microsoft.com/WCFSecurityMode/WCFSecurityMode.svc/mex" />
+    <MetadataFile FileName="WCFSecurityMode.xsd" MetadataType="Schema" ID="fa30b2f0-44ec-4f64-b69f-7edaaea5f179" SourceId="1" SourceUrl="net.tcp://vdi-v-tazho.fareast.corp.microsoft.com/WCFSecurityMode/WCFSecurityMode.svc/mex" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

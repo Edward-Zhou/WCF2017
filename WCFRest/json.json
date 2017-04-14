@@ -1,0 +1,11 @@
+﻿{
+  "intMemAvailableMax": 240,
+  "intProjectRevision": 5,
+  "blnCharging": 1,
+  "intBatteryLevel": 80,
+  "strUUID": "786234yugjhg4",
+  "intMemAvailable": 105,
+  "intDeviceId": 6170,
+  "strIPAddr": "10.1.5.101",
+  "strDescription": "A stream test"
+}

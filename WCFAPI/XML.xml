@@ -1,0 +1,11 @@
+﻿<root type="object">
+  <intMemAvailableMax type="number">240</intMemAvailableMax>
+  <intProjectRevision type="number">5</intProjectRevision>
+  <blnCharging type="number">1</blnCharging>
+  <intBatteryLevel type="number">80</intBatteryLevel>
+  <strUUID type="string">786234yugjhg4</strUUID>
+  <intMemAvailable type="number">105</intMemAvailable>
+  <intDeviceId type="number">6170</intDeviceId>
+  <strIPAddr type="string">10.1.5.101</strIPAddr>
+  <strDescription type="string">A stream test</strDescription>
+</root>

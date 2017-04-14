@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="90906cdb-999e-4897-ad84-90d12aa36ca3" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:81/WCFTimeOut/TimeOut.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="TimeOut3.xsd" MetadataType="Schema" ID="0a7b9323-ec34-45ee-942f-567bb10dd68c" SourceId="1" SourceUrl="http://localhost:81/WCFTimeOut/TimeOut.svc?xsd=xsd0" />
+    <MetadataFile FileName="TimeOut1.wsdl" MetadataType="Wsdl" ID="6e13d7e9-dc15-45c5-ae09-c4f8269c2d6f" SourceId="1" SourceUrl="http://localhost:81/WCFTimeOut/TimeOut.svc?wsdl" />
+    <MetadataFile FileName="TimeOut1.disco" MetadataType="Disco" ID="0c2f6d76-5363-455e-99fa-4724299211b9" SourceId="1" SourceUrl="http://localhost:81/WCFTimeOut/TimeOut.svc?disco" />
+    <MetadataFile FileName="TimeOut31.xsd" MetadataType="Schema" ID="fea41a6c-9e20-4b91-8858-925a1a77f427" SourceId="1" SourceUrl="http://localhost:81/WCFTimeOut/TimeOut.svc?xsd=xsd2" />
+    <MetadataFile FileName="TimeOut32.xsd" MetadataType="Schema" ID="6e144dbf-13d6-40b0-94b7-d0959ea0b506" SourceId="1" SourceUrl="http://localhost:81/WCFTimeOut/TimeOut.svc?xsd=xsd1" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

@@ -1,0 +1,1073 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="TestDbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="ASConfigurationPropertiesTable">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ArchiveServer" Type="nvarchar" MaxLength="128" />
+          <Property Name="ArchiveDatabase" Type="nvarchar" MaxLength="128" />
+          <Property Name="MaxSizeFailedStagingTable" Type="bigint" />
+          <Property Name="APEnabled" Type="bit" Nullable="false" />
+          <Property Name="APThreshold" Type="int" />
+          <Property Name="APMaxEventAge" Type="float" />
+          <Property Name="APTrimPercentage" Type="int" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'TestDb.dbo.ASDBVersionTable' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="ASDBVersionTable">
+          <Key>
+            <PropertyRef Name="DbIdentity" />
+            <PropertyRef Name="MajorVersion" />
+            <PropertyRef Name="MinorVersion" />
+            <PropertyRef Name="BuildVersion" />
+            <PropertyRef Name="RevisionVersion" />
+          </Key>
+          <Property Name="DbIdentity" Type="nvarchar" MaxLength="36" Nullable="false" />
+          <Property Name="MajorVersion" Type="int" Nullable="false" />
+          <Property Name="MinorVersion" Type="int" Nullable="false" />
+          <Property Name="BuildVersion" Type="int" Nullable="false" />
+          <Property Name="RevisionVersion" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ASEventSourcesTable">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="256" />
+          <Property Name="Computer" Type="nvarchar" MaxLength="450" Nullable="false" />
+          <Property Name="Site" Type="nvarchar" MaxLength="256" />
+          <Property Name="VirtualPath" Type="nvarchar" MaxLength="256" />
+          <Property Name="ApplicationVirtualPath" Type="nvarchar" MaxLength="256" />
+          <Property Name="ServiceVirtualPath" Type="nvarchar" MaxLength="256" />
+        </EntityType>
+        <EntityType Name="ASFailedStagingTable">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" Nullable="false" />
+          <Property Name="ArchiveId" Type="bigint" Nullable="false" />
+          <Property Name="EventTypeId" Type="int" Nullable="false" />
+          <Property Name="E2EActivityId" Type="nvarchar" MaxLength="36" />
+          <Property Name="Computer" Type="nvarchar" MaxLength="450" Nullable="false" />
+          <Property Name="EventSource" Type="nvarchar" MaxLength="1024" />
+          <Property Name="ProcessId" Type="int" />
+          <Property Name="TraceLevelId" Type="tinyint" Nullable="false" />
+          <Property Name="TimeCreated" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="Data1Str" Type="nvarchar" MaxLength="450" />
+          <Property Name="Data2Str" Type="nvarchar" MaxLength="450" />
+          <Property Name="Data3Str" Type="nvarchar" MaxLength="450" />
+          <Property Name="Data4Str" Type="nvarchar" MaxLength="450" />
+          <Property Name="Data5Str" Type="nvarchar" MaxLength="450" />
+          <Property Name="Data6Str" Type="nvarchar" MaxLength="450" />
+          <Property Name="Data7Str" Type="nvarchar" MaxLength="450" />
+          <Property Name="Data8Str" Type="nvarchar" MaxLength="450" />
+          <Property Name="Data9Str" Type="nvarchar" MaxLength="450" />
+          <Property Name="Data1MaxStr" Type="nvarchar(max)" />
+          <Property Name="Data1Int" Type="int" />
+          <Property Name="Data2Int" Type="int" />
+          <Property Name="Data3Int" Type="int" />
+          <Property Name="Data1BigInt" Type="bigint" />
+          <Property Name="Data1UniqueId" Type="nvarchar" MaxLength="36" />
+          <Property Name="CustomAnnotations" Type="nvarchar(max)" />
+          <Property Name="CustomProperties" Type="nvarchar(max)" />
+          <Property Name="CustomArguments" Type="nvarchar(max)" />
+          <Property Name="ErrorNumber" Type="int" />
+          <Property Name="ErrorMessage" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="ASJobsTable">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="JobIdentifier" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Sql" Type="nvarchar(max)" />
+          <Property Name="LastRunTime" Type="datetime2" Precision="7" />
+          <Property Name="IsLastRunSuccess" Type="bit" />
+          <Property Name="LastErrorCode" Type="int" />
+          <Property Name="LastError" Type="nvarchar" MaxLength="2048" />
+          <Property Name="PeriodInSeconds" Type="int" />
+          <Property Name="ConversationHandle" Type="uniqueidentifier" />
+        </EntityType>
+        <EntityType Name="ASOperationsHistoryTable">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserLogin" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="OperationId" Type="int" Nullable="false" />
+          <Property Name="Parameters" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Status" Type="int" Nullable="false" />
+          <Property Name="Message" Type="nvarchar(max)" />
+          <Property Name="Log" Type="nvarchar(max)" />
+          <Property Name="StartTime" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="EndTime" Type="datetime2" Precision="7" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'TestDb.dbo.ASStagingTable' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="ASStagingTable">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="ArchiveId" />
+            <PropertyRef Name="EventTypeId" />
+            <PropertyRef Name="Computer" />
+            <PropertyRef Name="ProcessId" />
+            <PropertyRef Name="TraceLevelId" />
+            <PropertyRef Name="TimeCreated" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ArchiveId" Type="bigint" Nullable="false" />
+          <Property Name="EventTypeId" Type="int" Nullable="false" />
+          <Property Name="E2EActivityId" Type="nvarchar" MaxLength="36" />
+          <Property Name="Computer" Type="nvarchar" MaxLength="450" Nullable="false" />
+          <Property Name="EventSource" Type="nvarchar" MaxLength="1024" />
+          <Property Name="ProcessId" Type="int" Nullable="false" />
+          <Property Name="TraceLevelId" Type="tinyint" Nullable="false" />
+          <Property Name="TimeCreated" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="Data1Str" Type="nvarchar" MaxLength="450" />
+          <Property Name="Data2Str" Type="nvarchar" MaxLength="450" />
+          <Property Name="Data3Str" Type="nvarchar" MaxLength="450" />
+          <Property Name="Data4Str" Type="nvarchar" MaxLength="450" />
+          <Property Name="Data5Str" Type="nvarchar" MaxLength="450" />
+          <Property Name="Data6Str" Type="nvarchar" MaxLength="450" />
+          <Property Name="Data7Str" Type="nvarchar" MaxLength="450" />
+          <Property Name="Data8Str" Type="nvarchar" MaxLength="450" />
+          <Property Name="Data9Str" Type="nvarchar" MaxLength="450" />
+          <Property Name="Data1MaxStr" Type="nvarchar(max)" />
+          <Property Name="Data1Int" Type="int" />
+          <Property Name="Data2Int" Type="int" />
+          <Property Name="Data3Int" Type="int" />
+          <Property Name="Data1BigInt" Type="bigint" />
+          <Property Name="Data1UniqueId" Type="nvarchar" MaxLength="36" />
+          <Property Name="CustomAnnotations" Type="nvarchar(max)" />
+          <Property Name="CustomProperties" Type="nvarchar(max)" />
+          <Property Name="CustomArguments" Type="nvarchar(max)" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'TestDb.dbo.ASTransferEventsTable' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="ASTransferEventsTable">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="EventTypeId" />
+            <PropertyRef Name="EventSourceId" />
+            <PropertyRef Name="ProcessId" />
+            <PropertyRef Name="TraceLevelId" />
+            <PropertyRef Name="TimeCreated" />
+          </Key>
+          <Property Name="Id" Type="bigint" Nullable="false" />
+          <Property Name="EventTypeId" Type="int" Nullable="false" />
+          <Property Name="EventSourceId" Type="int" Nullable="false" />
+          <Property Name="ProcessId" Type="int" Nullable="false" />
+          <Property Name="TraceLevelId" Type="tinyint" Nullable="false" />
+          <Property Name="E2EActivityId" Type="nvarchar" MaxLength="36" />
+          <Property Name="ToE2EActivityId" Type="nvarchar" MaxLength="36" />
+          <Property Name="TimeCreated" Type="datetime2" Precision="7" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'TestDb.dbo.ASWcfEventsTable' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="ASWcfEventsTable">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="EventTypeId" />
+            <PropertyRef Name="EventSourceId" />
+            <PropertyRef Name="ProcessId" />
+            <PropertyRef Name="TraceLevelId" />
+            <PropertyRef Name="TimeCreated" />
+          </Key>
+          <Property Name="Id" Type="bigint" Nullable="false" />
+          <Property Name="EventTypeId" Type="int" Nullable="false" />
+          <Property Name="EventSourceId" Type="int" Nullable="false" />
+          <Property Name="ProcessId" Type="int" Nullable="false" />
+          <Property Name="TraceLevelId" Type="tinyint" Nullable="false" />
+          <Property Name="E2EActivityId" Type="nvarchar" MaxLength="36" />
+          <Property Name="TimeCreated" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="Data1UniqueIdentifier" Type="nvarchar" MaxLength="36" />
+          <Property Name="Data1Str" Type="nvarchar" MaxLength="450" />
+          <Property Name="Data2Str" Type="nvarchar" MaxLength="450" />
+          <Property Name="Data3Str" Type="nvarchar" MaxLength="450" />
+          <Property Name="Data4Str" Type="nvarchar" MaxLength="450" />
+          <Property Name="Data1MaxStr" Type="nvarchar(max)" />
+          <Property Name="Data1Int" Type="int" />
+          <Property Name="Data2Int" Type="int" />
+          <Property Name="Data3Int" Type="int" />
+        </EntityType>
+        <EntityType Name="ASWfEventAnnotationSetsTable">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Annotations" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="AnnotationsChecksum" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ASWfEventAnnotationsTable">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AnnotationSetId" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Value" Type="nvarchar" MaxLength="450" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6005: The data type 'sql_variant' is currently not supported for the target Entity Framework version; the column 'Value' in the table 'TestDb.dbo.ASWfEventPropertiesTable' was excluded.
+warning 6002: The table/view 'TestDb.dbo.ASWfEventPropertiesTable' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="ASWfEventPropertiesTable">
+          <Key>
+            <PropertyRef Name="EventId" />
+            <PropertyRef Name="WfDataSourceId" />
+            <PropertyRef Name="Name" />
+            <PropertyRef Name="TimeCreated" />
+          </Key>
+          <Property Name="EventId" Type="bigint" Nullable="false" />
+          <Property Name="WfDataSourceId" Type="tinyint" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Type" Type="nvarchar" MaxLength="128" />
+          <Property Name="ValueBlob" Type="nvarchar(max)" />
+          <Property Name="TimeCreated" Type="datetime2" Precision="7" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'TestDb.dbo.ASWfEventsTable' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="ASWfEventsTable">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="EventTypeId" />
+            <PropertyRef Name="EventSourceId" />
+            <PropertyRef Name="ProcessId" />
+            <PropertyRef Name="TraceLevelId" />
+            <PropertyRef Name="TimeCreated" />
+          </Key>
+          <Property Name="Id" Type="bigint" Nullable="false" />
+          <Property Name="EventTypeId" Type="int" Nullable="false" />
+          <Property Name="EventSourceId" Type="int" Nullable="false" />
+          <Property Name="ProcessId" Type="int" Nullable="false" />
+          <Property Name="TraceLevelId" Type="tinyint" Nullable="false" />
+          <Property Name="WorkflowInstanceId" Type="nvarchar" MaxLength="36" />
+          <Property Name="RecordNumber" Type="bigint" />
+          <Property Name="TrackingProfileId" Type="int" />
+          <Property Name="AnnotationSetId" Type="int" />
+          <Property Name="TimeCreated" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="Data1Str" Type="nvarchar" MaxLength="450" />
+          <Property Name="Data2Str" Type="nvarchar" MaxLength="450" />
+          <Property Name="Data3Str" Type="nvarchar" MaxLength="450" />
+          <Property Name="Data4Str" Type="nvarchar" MaxLength="450" />
+          <Property Name="Data5Str" Type="nvarchar" MaxLength="450" />
+          <Property Name="Data6Str" Type="nvarchar" MaxLength="450" />
+          <Property Name="Data7Str" Type="nvarchar" MaxLength="450" />
+          <Property Name="Data8Str" Type="nvarchar" MaxLength="450" />
+          <Property Name="Data1MaxStr" Type="nvarchar(max)" />
+          <Property Name="Data1Int" Type="int" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'TestDb.dbo.ASWfInstancesTable' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="ASWfInstancesTable">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="WorkflowInstanceId" />
+            <PropertyRef Name="LatestRecordNumber" />
+            <PropertyRef Name="LastEventSourceId" />
+            <PropertyRef Name="LastEventStatus" />
+            <PropertyRef Name="StartTime" />
+            <PropertyRef Name="LastModifiedTime" />
+            <PropertyRef Name="CurrentDuration" />
+            <PropertyRef Name="ExceptionCount" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="WorkflowInstanceId" Type="nvarchar" MaxLength="36" Nullable="false" />
+          <Property Name="LatestRecordNumber" Type="bigint" Nullable="false" />
+          <Property Name="LastEventSourceId" Type="int" Nullable="false" />
+          <Property Name="LastEventStatus" Type="nvarchar" MaxLength="450" Nullable="false" />
+          <Property Name="StartTime" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="LastModifiedTime" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="CurrentDuration" Type="int" Nullable="false" />
+          <Property Name="ExceptionCount" Type="int" Nullable="false" />
+          <Property Name="LastAbortedTime" Type="datetime2" Precision="7" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'TestDb.dbo.ASWfPropertyNamesTable' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="ASWfPropertyNamesTable">
+          <Key>
+            <PropertyRef Name="EventSourceId" />
+            <PropertyRef Name="Name" />
+            <PropertyRef Name="Type" />
+          </Key>
+          <Property Name="EventSourceId" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Type" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ASWfTrackingProfilesTable">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="450" />
+        </EntityType>
+        <EntityType Name="tblUser">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserName" Type="nchar" MaxLength="10" />
+          <Property Name="UserAge" Type="int" />
+          <Property Name="UserClass" Type="nchar" MaxLength="10" />
+        </EntityType>
+        <EntityContainer Name="TestDbModelStoreContainer">
+          <EntitySet Name="ASConfigurationPropertiesTable" EntityType="Self.ASConfigurationPropertiesTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ASEventSourcesTable" EntityType="Self.ASEventSourcesTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ASFailedStagingTable" EntityType="Self.ASFailedStagingTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ASJobsTable" EntityType="Self.ASJobsTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ASOperationsHistoryTable" EntityType="Self.ASOperationsHistoryTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ASWfEventAnnotationSetsTable" EntityType="Self.ASWfEventAnnotationSetsTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ASWfEventAnnotationsTable" EntityType="Self.ASWfEventAnnotationsTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ASWfTrackingProfilesTable" EntityType="Self.ASWfTrackingProfilesTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblUser" EntityType="Self.tblUser" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ASDBVersionTable" EntityType="Self.ASDBVersionTable" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+[ASDBVersionTable].[DbIdentity] AS [DbIdentity], 
+[ASDBVersionTable].[MajorVersion] AS [MajorVersion], 
+[ASDBVersionTable].[MinorVersion] AS [MinorVersion], 
+[ASDBVersionTable].[BuildVersion] AS [BuildVersion], 
+[ASDBVersionTable].[RevisionVersion] AS [RevisionVersion]
+FROM [dbo].[ASDBVersionTable] AS [ASDBVersionTable]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="ASStagingTable" EntityType="Self.ASStagingTable" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+[ASStagingTable].[Id] AS [Id], 
+[ASStagingTable].[ArchiveId] AS [ArchiveId], 
+[ASStagingTable].[EventTypeId] AS [EventTypeId], 
+[ASStagingTable].[E2EActivityId] AS [E2EActivityId], 
+[ASStagingTable].[Computer] AS [Computer], 
+[ASStagingTable].[EventSource] AS [EventSource], 
+[ASStagingTable].[ProcessId] AS [ProcessId], 
+[ASStagingTable].[TraceLevelId] AS [TraceLevelId], 
+[ASStagingTable].[TimeCreated] AS [TimeCreated], 
+[ASStagingTable].[Data1Str] AS [Data1Str], 
+[ASStagingTable].[Data2Str] AS [Data2Str], 
+[ASStagingTable].[Data3Str] AS [Data3Str], 
+[ASStagingTable].[Data4Str] AS [Data4Str], 
+[ASStagingTable].[Data5Str] AS [Data5Str], 
+[ASStagingTable].[Data6Str] AS [Data6Str], 
+[ASStagingTable].[Data7Str] AS [Data7Str], 
+[ASStagingTable].[Data8Str] AS [Data8Str], 
+[ASStagingTable].[Data9Str] AS [Data9Str], 
+[ASStagingTable].[Data1MaxStr] AS [Data1MaxStr], 
+[ASStagingTable].[Data1Int] AS [Data1Int], 
+[ASStagingTable].[Data2Int] AS [Data2Int], 
+[ASStagingTable].[Data3Int] AS [Data3Int], 
+[ASStagingTable].[Data1BigInt] AS [Data1BigInt], 
+[ASStagingTable].[Data1UniqueId] AS [Data1UniqueId], 
+[ASStagingTable].[CustomAnnotations] AS [CustomAnnotations], 
+[ASStagingTable].[CustomProperties] AS [CustomProperties], 
+[ASStagingTable].[CustomArguments] AS [CustomArguments]
+FROM [dbo].[ASStagingTable] AS [ASStagingTable]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="ASTransferEventsTable" EntityType="Self.ASTransferEventsTable" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+[ASTransferEventsTable].[Id] AS [Id], 
+[ASTransferEventsTable].[EventTypeId] AS [EventTypeId], 
+[ASTransferEventsTable].[EventSourceId] AS [EventSourceId], 
+[ASTransferEventsTable].[ProcessId] AS [ProcessId], 
+[ASTransferEventsTable].[TraceLevelId] AS [TraceLevelId], 
+[ASTransferEventsTable].[E2EActivityId] AS [E2EActivityId], 
+[ASTransferEventsTable].[ToE2EActivityId] AS [ToE2EActivityId], 
+[ASTransferEventsTable].[TimeCreated] AS [TimeCreated]
+FROM [dbo].[ASTransferEventsTable] AS [ASTransferEventsTable]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="ASWcfEventsTable" EntityType="Self.ASWcfEventsTable" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+[ASWcfEventsTable].[Id] AS [Id], 
+[ASWcfEventsTable].[EventTypeId] AS [EventTypeId], 
+[ASWcfEventsTable].[EventSourceId] AS [EventSourceId], 
+[ASWcfEventsTable].[ProcessId] AS [ProcessId], 
+[ASWcfEventsTable].[TraceLevelId] AS [TraceLevelId], 
+[ASWcfEventsTable].[E2EActivityId] AS [E2EActivityId], 
+[ASWcfEventsTable].[TimeCreated] AS [TimeCreated], 
+[ASWcfEventsTable].[Data1UniqueIdentifier] AS [Data1UniqueIdentifier], 
+[ASWcfEventsTable].[Data1Str] AS [Data1Str], 
+[ASWcfEventsTable].[Data2Str] AS [Data2Str], 
+[ASWcfEventsTable].[Data3Str] AS [Data3Str], 
+[ASWcfEventsTable].[Data4Str] AS [Data4Str], 
+[ASWcfEventsTable].[Data1MaxStr] AS [Data1MaxStr], 
+[ASWcfEventsTable].[Data1Int] AS [Data1Int], 
+[ASWcfEventsTable].[Data2Int] AS [Data2Int], 
+[ASWcfEventsTable].[Data3Int] AS [Data3Int]
+FROM [dbo].[ASWcfEventsTable] AS [ASWcfEventsTable]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="ASWfEventPropertiesTable" EntityType="Self.ASWfEventPropertiesTable" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+[ASWfEventPropertiesTable].[EventId] AS [EventId], 
+[ASWfEventPropertiesTable].[WfDataSourceId] AS [WfDataSourceId], 
+[ASWfEventPropertiesTable].[Name] AS [Name], 
+[ASWfEventPropertiesTable].[Type] AS [Type], 
+[ASWfEventPropertiesTable].[ValueBlob] AS [ValueBlob], 
+[ASWfEventPropertiesTable].[TimeCreated] AS [TimeCreated]
+FROM [dbo].[ASWfEventPropertiesTable] AS [ASWfEventPropertiesTable]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="ASWfEventsTable" EntityType="Self.ASWfEventsTable" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+[ASWfEventsTable].[Id] AS [Id], 
+[ASWfEventsTable].[EventTypeId] AS [EventTypeId], 
+[ASWfEventsTable].[EventSourceId] AS [EventSourceId], 
+[ASWfEventsTable].[ProcessId] AS [ProcessId], 
+[ASWfEventsTable].[TraceLevelId] AS [TraceLevelId], 
+[ASWfEventsTable].[WorkflowInstanceId] AS [WorkflowInstanceId], 
+[ASWfEventsTable].[RecordNumber] AS [RecordNumber], 
+[ASWfEventsTable].[TrackingProfileId] AS [TrackingProfileId], 
+[ASWfEventsTable].[AnnotationSetId] AS [AnnotationSetId], 
+[ASWfEventsTable].[TimeCreated] AS [TimeCreated], 
+[ASWfEventsTable].[Data1Str] AS [Data1Str], 
+[ASWfEventsTable].[Data2Str] AS [Data2Str], 
+[ASWfEventsTable].[Data3Str] AS [Data3Str], 
+[ASWfEventsTable].[Data4Str] AS [Data4Str], 
+[ASWfEventsTable].[Data5Str] AS [Data5Str], 
+[ASWfEventsTable].[Data6Str] AS [Data6Str], 
+[ASWfEventsTable].[Data7Str] AS [Data7Str], 
+[ASWfEventsTable].[Data8Str] AS [Data8Str], 
+[ASWfEventsTable].[Data1MaxStr] AS [Data1MaxStr], 
+[ASWfEventsTable].[Data1Int] AS [Data1Int]
+FROM [dbo].[ASWfEventsTable] AS [ASWfEventsTable]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="ASWfInstancesTable" EntityType="Self.ASWfInstancesTable" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+[ASWfInstancesTable].[Id] AS [Id], 
+[ASWfInstancesTable].[WorkflowInstanceId] AS [WorkflowInstanceId], 
+[ASWfInstancesTable].[LatestRecordNumber] AS [LatestRecordNumber], 
+[ASWfInstancesTable].[LastEventSourceId] AS [LastEventSourceId], 
+[ASWfInstancesTable].[LastEventStatus] AS [LastEventStatus], 
+[ASWfInstancesTable].[StartTime] AS [StartTime], 
+[ASWfInstancesTable].[LastModifiedTime] AS [LastModifiedTime], 
+[ASWfInstancesTable].[CurrentDuration] AS [CurrentDuration], 
+[ASWfInstancesTable].[ExceptionCount] AS [ExceptionCount], 
+[ASWfInstancesTable].[LastAbortedTime] AS [LastAbortedTime]
+FROM [dbo].[ASWfInstancesTable] AS [ASWfInstancesTable]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="ASWfPropertyNamesTable" EntityType="Self.ASWfPropertyNamesTable" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+[ASWfPropertyNamesTable].[EventSourceId] AS [EventSourceId], 
+[ASWfPropertyNamesTable].[Name] AS [Name], 
+[ASWfPropertyNamesTable].[Type] AS [Type]
+FROM [dbo].[ASWfPropertyNamesTable] AS [ASWfPropertyNamesTable]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="TestDbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="ASConfigurationPropertiesTable">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ArchiveServer" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="ArchiveDatabase" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="MaxSizeFailedStagingTable" Type="Int64" />
+          <Property Name="APEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="APThreshold" Type="Int32" />
+          <Property Name="APMaxEventAge" Type="Double" />
+          <Property Name="APTrimPercentage" Type="Int32" />
+        </EntityType>
+        <EntityType Name="ASEventSourcesTable">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="Computer" Type="String" MaxLength="450" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Site" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="VirtualPath" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="ApplicationVirtualPath" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="ServiceVirtualPath" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="ASFailedStagingTable">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" />
+          <Property Name="ArchiveId" Type="Int64" Nullable="false" />
+          <Property Name="EventTypeId" Type="Int32" Nullable="false" />
+          <Property Name="E2EActivityId" Type="String" MaxLength="36" FixedLength="false" Unicode="true" />
+          <Property Name="Computer" Type="String" MaxLength="450" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="EventSource" Type="String" MaxLength="1024" FixedLength="false" Unicode="true" />
+          <Property Name="ProcessId" Type="Int32" />
+          <Property Name="TraceLevelId" Type="Byte" Nullable="false" />
+          <Property Name="TimeCreated" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="Data1Str" Type="String" MaxLength="450" FixedLength="false" Unicode="true" />
+          <Property Name="Data2Str" Type="String" MaxLength="450" FixedLength="false" Unicode="true" />
+          <Property Name="Data3Str" Type="String" MaxLength="450" FixedLength="false" Unicode="true" />
+          <Property Name="Data4Str" Type="String" MaxLength="450" FixedLength="false" Unicode="true" />
+          <Property Name="Data5Str" Type="String" MaxLength="450" FixedLength="false" Unicode="true" />
+          <Property Name="Data6Str" Type="String" MaxLength="450" FixedLength="false" Unicode="true" />
+          <Property Name="Data7Str" Type="String" MaxLength="450" FixedLength="false" Unicode="true" />
+          <Property Name="Data8Str" Type="String" MaxLength="450" FixedLength="false" Unicode="true" />
+          <Property Name="Data9Str" Type="String" MaxLength="450" FixedLength="false" Unicode="true" />
+          <Property Name="Data1MaxStr" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Data1Int" Type="Int32" />
+          <Property Name="Data2Int" Type="Int32" />
+          <Property Name="Data3Int" Type="Int32" />
+          <Property Name="Data1BigInt" Type="Int64" />
+          <Property Name="Data1UniqueId" Type="String" MaxLength="36" FixedLength="false" Unicode="true" />
+          <Property Name="CustomAnnotations" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CustomProperties" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CustomArguments" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ErrorNumber" Type="Int32" />
+          <Property Name="ErrorMessage" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="ASJobsTable">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="JobIdentifier" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Sql" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="LastRunTime" Type="DateTime" Precision="7" />
+          <Property Name="IsLastRunSuccess" Type="Boolean" />
+          <Property Name="LastErrorCode" Type="Int32" />
+          <Property Name="LastError" Type="String" MaxLength="2048" FixedLength="false" Unicode="true" />
+          <Property Name="PeriodInSeconds" Type="Int32" />
+          <Property Name="ConversationHandle" Type="Guid" />
+        </EntityType>
+        <EntityType Name="ASOperationsHistoryTable">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserLogin" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="OperationId" Type="Int32" Nullable="false" />
+          <Property Name="Parameters" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Status" Type="Int32" Nullable="false" />
+          <Property Name="Message" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Log" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="StartTime" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="EndTime" Type="DateTime" Precision="7" />
+        </EntityType>
+        <EntityType Name="ASWfEventAnnotationSetsTable">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Annotations" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="AnnotationsChecksum" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ASWfEventAnnotationsTable">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AnnotationSetId" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Value" Type="String" MaxLength="450" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ASWfTrackingProfilesTable">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="450" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="ASDBVersionTable">
+          <Key>
+            <PropertyRef Name="DbIdentity" />
+            <PropertyRef Name="MajorVersion" />
+            <PropertyRef Name="MinorVersion" />
+            <PropertyRef Name="BuildVersion" />
+            <PropertyRef Name="RevisionVersion" />
+          </Key>
+          <Property Name="DbIdentity" Type="String" MaxLength="36" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MajorVersion" Type="Int32" Nullable="false" />
+          <Property Name="MinorVersion" Type="Int32" Nullable="false" />
+          <Property Name="BuildVersion" Type="Int32" Nullable="false" />
+          <Property Name="RevisionVersion" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ASStagingTable">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="ArchiveId" />
+            <PropertyRef Name="EventTypeId" />
+            <PropertyRef Name="Computer" />
+            <PropertyRef Name="ProcessId" />
+            <PropertyRef Name="TraceLevelId" />
+            <PropertyRef Name="TimeCreated" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ArchiveId" Type="Int64" Nullable="false" />
+          <Property Name="EventTypeId" Type="Int32" Nullable="false" />
+          <Property Name="E2EActivityId" Type="String" MaxLength="36" FixedLength="false" Unicode="true" />
+          <Property Name="Computer" Type="String" MaxLength="450" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="EventSource" Type="String" MaxLength="1024" FixedLength="false" Unicode="true" />
+          <Property Name="ProcessId" Type="Int32" Nullable="false" />
+          <Property Name="TraceLevelId" Type="Byte" Nullable="false" />
+          <Property Name="TimeCreated" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="Data1Str" Type="String" MaxLength="450" FixedLength="false" Unicode="true" />
+          <Property Name="Data2Str" Type="String" MaxLength="450" FixedLength="false" Unicode="true" />
+          <Property Name="Data3Str" Type="String" MaxLength="450" FixedLength="false" Unicode="true" />
+          <Property Name="Data4Str" Type="String" MaxLength="450" FixedLength="false" Unicode="true" />
+          <Property Name="Data5Str" Type="String" MaxLength="450" FixedLength="false" Unicode="true" />
+          <Property Name="Data6Str" Type="String" MaxLength="450" FixedLength="false" Unicode="true" />
+          <Property Name="Data7Str" Type="String" MaxLength="450" FixedLength="false" Unicode="true" />
+          <Property Name="Data8Str" Type="String" MaxLength="450" FixedLength="false" Unicode="true" />
+          <Property Name="Data9Str" Type="String" MaxLength="450" FixedLength="false" Unicode="true" />
+          <Property Name="Data1MaxStr" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Data1Int" Type="Int32" />
+          <Property Name="Data2Int" Type="Int32" />
+          <Property Name="Data3Int" Type="Int32" />
+          <Property Name="Data1BigInt" Type="Int64" />
+          <Property Name="Data1UniqueId" Type="String" MaxLength="36" FixedLength="false" Unicode="true" />
+          <Property Name="CustomAnnotations" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CustomProperties" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CustomArguments" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="ASTransferEventsTable">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="EventTypeId" />
+            <PropertyRef Name="EventSourceId" />
+            <PropertyRef Name="ProcessId" />
+            <PropertyRef Name="TraceLevelId" />
+            <PropertyRef Name="TimeCreated" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" />
+          <Property Name="EventTypeId" Type="Int32" Nullable="false" />
+          <Property Name="EventSourceId" Type="Int32" Nullable="false" />
+          <Property Name="ProcessId" Type="Int32" Nullable="false" />
+          <Property Name="TraceLevelId" Type="Byte" Nullable="false" />
+          <Property Name="E2EActivityId" Type="String" MaxLength="36" FixedLength="false" Unicode="true" />
+          <Property Name="ToE2EActivityId" Type="String" MaxLength="36" FixedLength="false" Unicode="true" />
+          <Property Name="TimeCreated" Type="DateTime" Nullable="false" Precision="7" />
+        </EntityType>
+        <EntityType Name="ASWcfEventsTable">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="EventTypeId" />
+            <PropertyRef Name="EventSourceId" />
+            <PropertyRef Name="ProcessId" />
+            <PropertyRef Name="TraceLevelId" />
+            <PropertyRef Name="TimeCreated" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" />
+          <Property Name="EventTypeId" Type="Int32" Nullable="false" />
+          <Property Name="EventSourceId" Type="Int32" Nullable="false" />
+          <Property Name="ProcessId" Type="Int32" Nullable="false" />
+          <Property Name="TraceLevelId" Type="Byte" Nullable="false" />
+          <Property Name="E2EActivityId" Type="String" MaxLength="36" FixedLength="false" Unicode="true" />
+          <Property Name="TimeCreated" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="Data1UniqueIdentifier" Type="String" MaxLength="36" FixedLength="false" Unicode="true" />
+          <Property Name="Data1Str" Type="String" MaxLength="450" FixedLength="false" Unicode="true" />
+          <Property Name="Data2Str" Type="String" MaxLength="450" FixedLength="false" Unicode="true" />
+          <Property Name="Data3Str" Type="String" MaxLength="450" FixedLength="false" Unicode="true" />
+          <Property Name="Data4Str" Type="String" MaxLength="450" FixedLength="false" Unicode="true" />
+          <Property Name="Data1MaxStr" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Data1Int" Type="Int32" />
+          <Property Name="Data2Int" Type="Int32" />
+          <Property Name="Data3Int" Type="Int32" />
+        </EntityType>
+        <EntityType Name="ASWfEventPropertiesTable">
+          <Key>
+            <PropertyRef Name="EventId" />
+            <PropertyRef Name="WfDataSourceId" />
+            <PropertyRef Name="Name" />
+            <PropertyRef Name="TimeCreated" />
+          </Key>
+          <Property Name="EventId" Type="Int64" Nullable="false" />
+          <Property Name="WfDataSourceId" Type="Byte" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Type" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="ValueBlob" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="TimeCreated" Type="DateTime" Nullable="false" Precision="7" />
+        </EntityType>
+        <EntityType Name="ASWfEventsTable">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="EventTypeId" />
+            <PropertyRef Name="EventSourceId" />
+            <PropertyRef Name="ProcessId" />
+            <PropertyRef Name="TraceLevelId" />
+            <PropertyRef Name="TimeCreated" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" />
+          <Property Name="EventTypeId" Type="Int32" Nullable="false" />
+          <Property Name="EventSourceId" Type="Int32" Nullable="false" />
+          <Property Name="ProcessId" Type="Int32" Nullable="false" />
+          <Property Name="TraceLevelId" Type="Byte" Nullable="false" />
+          <Property Name="WorkflowInstanceId" Type="String" MaxLength="36" FixedLength="false" Unicode="true" />
+          <Property Name="RecordNumber" Type="Int64" />
+          <Property Name="TrackingProfileId" Type="Int32" />
+          <Property Name="AnnotationSetId" Type="Int32" />
+          <Property Name="TimeCreated" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="Data1Str" Type="String" MaxLength="450" FixedLength="false" Unicode="true" />
+          <Property Name="Data2Str" Type="String" MaxLength="450" FixedLength="false" Unicode="true" />
+          <Property Name="Data3Str" Type="String" MaxLength="450" FixedLength="false" Unicode="true" />
+          <Property Name="Data4Str" Type="String" MaxLength="450" FixedLength="false" Unicode="true" />
+          <Property Name="Data5Str" Type="String" MaxLength="450" FixedLength="false" Unicode="true" />
+          <Property Name="Data6Str" Type="String" MaxLength="450" FixedLength="false" Unicode="true" />
+          <Property Name="Data7Str" Type="String" MaxLength="450" FixedLength="false" Unicode="true" />
+          <Property Name="Data8Str" Type="String" MaxLength="450" FixedLength="false" Unicode="true" />
+          <Property Name="Data1MaxStr" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Data1Int" Type="Int32" />
+        </EntityType>
+        <EntityType Name="ASWfInstancesTable">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="WorkflowInstanceId" />
+            <PropertyRef Name="LatestRecordNumber" />
+            <PropertyRef Name="LastEventSourceId" />
+            <PropertyRef Name="LastEventStatus" />
+            <PropertyRef Name="StartTime" />
+            <PropertyRef Name="LastModifiedTime" />
+            <PropertyRef Name="CurrentDuration" />
+            <PropertyRef Name="ExceptionCount" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="WorkflowInstanceId" Type="String" MaxLength="36" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LatestRecordNumber" Type="Int64" Nullable="false" />
+          <Property Name="LastEventSourceId" Type="Int32" Nullable="false" />
+          <Property Name="LastEventStatus" Type="String" MaxLength="450" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="StartTime" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="LastModifiedTime" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="CurrentDuration" Type="Int32" Nullable="false" />
+          <Property Name="ExceptionCount" Type="Int32" Nullable="false" />
+          <Property Name="LastAbortedTime" Type="DateTime" Precision="7" />
+        </EntityType>
+        <EntityType Name="ASWfPropertyNamesTable">
+          <Key>
+            <PropertyRef Name="EventSourceId" />
+            <PropertyRef Name="Name" />
+            <PropertyRef Name="Type" />
+          </Key>
+          <Property Name="EventSourceId" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Type" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="TestDbEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="ASConfigurationPropertiesTables" EntityType="Self.ASConfigurationPropertiesTable" />
+          <EntitySet Name="ASEventSourcesTables" EntityType="Self.ASEventSourcesTable" />
+          <EntitySet Name="ASFailedStagingTables" EntityType="Self.ASFailedStagingTable" />
+          <EntitySet Name="ASJobsTables" EntityType="Self.ASJobsTable" />
+          <EntitySet Name="ASOperationsHistoryTables" EntityType="Self.ASOperationsHistoryTable" />
+          <EntitySet Name="ASWfEventAnnotationSetsTables" EntityType="Self.ASWfEventAnnotationSetsTable" />
+          <EntitySet Name="ASWfEventAnnotationsTables" EntityType="Self.ASWfEventAnnotationsTable" />
+          <EntitySet Name="ASWfTrackingProfilesTables" EntityType="Self.ASWfTrackingProfilesTable" />
+          <EntitySet Name="ASDBVersionTables" EntityType="Self.ASDBVersionTable" />
+          <EntitySet Name="ASStagingTables" EntityType="Self.ASStagingTable" />
+          <EntitySet Name="ASTransferEventsTables" EntityType="Self.ASTransferEventsTable" />
+          <EntitySet Name="ASWcfEventsTables" EntityType="Self.ASWcfEventsTable" />
+          <EntitySet Name="ASWfEventPropertiesTables" EntityType="Self.ASWfEventPropertiesTable" />
+          <EntitySet Name="ASWfEventsTables" EntityType="Self.ASWfEventsTable" />
+          <EntitySet Name="ASWfInstancesTables" EntityType="Self.ASWfInstancesTable" />
+          <EntitySet Name="ASWfPropertyNamesTables" EntityType="Self.ASWfPropertyNamesTable" />
+          <EntitySet Name="tblUsers" EntityType="TestDbModel.tblUser" />
+        </EntityContainer>
+        <EntityType Name="tblUser">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="UserAge" Type="Int32" />
+          <Property Name="UserClass" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="TestDbModelStoreContainer" CdmEntityContainer="TestDbEntities">
+          <EntitySetMapping Name="ASConfigurationPropertiesTables">
+            <EntityTypeMapping TypeName="TestDbModel.ASConfigurationPropertiesTable">
+              <MappingFragment StoreEntitySet="ASConfigurationPropertiesTable">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ArchiveServer" ColumnName="ArchiveServer" />
+                <ScalarProperty Name="ArchiveDatabase" ColumnName="ArchiveDatabase" />
+                <ScalarProperty Name="MaxSizeFailedStagingTable" ColumnName="MaxSizeFailedStagingTable" />
+                <ScalarProperty Name="APEnabled" ColumnName="APEnabled" />
+                <ScalarProperty Name="APThreshold" ColumnName="APThreshold" />
+                <ScalarProperty Name="APMaxEventAge" ColumnName="APMaxEventAge" />
+                <ScalarProperty Name="APTrimPercentage" ColumnName="APTrimPercentage" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ASEventSourcesTables">
+            <EntityTypeMapping TypeName="TestDbModel.ASEventSourcesTable">
+              <MappingFragment StoreEntitySet="ASEventSourcesTable">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Computer" ColumnName="Computer" />
+                <ScalarProperty Name="Site" ColumnName="Site" />
+                <ScalarProperty Name="VirtualPath" ColumnName="VirtualPath" />
+                <ScalarProperty Name="ApplicationVirtualPath" ColumnName="ApplicationVirtualPath" />
+                <ScalarProperty Name="ServiceVirtualPath" ColumnName="ServiceVirtualPath" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ASFailedStagingTables">
+            <EntityTypeMapping TypeName="TestDbModel.ASFailedStagingTable">
+              <MappingFragment StoreEntitySet="ASFailedStagingTable">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ArchiveId" ColumnName="ArchiveId" />
+                <ScalarProperty Name="EventTypeId" ColumnName="EventTypeId" />
+                <ScalarProperty Name="E2EActivityId" ColumnName="E2EActivityId" />
+                <ScalarProperty Name="Computer" ColumnName="Computer" />
+                <ScalarProperty Name="EventSource" ColumnName="EventSource" />
+                <ScalarProperty Name="ProcessId" ColumnName="ProcessId" />
+                <ScalarProperty Name="TraceLevelId" ColumnName="TraceLevelId" />
+                <ScalarProperty Name="TimeCreated" ColumnName="TimeCreated" />
+                <ScalarProperty Name="Data1Str" ColumnName="Data1Str" />
+                <ScalarProperty Name="Data2Str" ColumnName="Data2Str" />
+                <ScalarProperty Name="Data3Str" ColumnName="Data3Str" />
+                <ScalarProperty Name="Data4Str" ColumnName="Data4Str" />
+                <ScalarProperty Name="Data5Str" ColumnName="Data5Str" />
+                <ScalarProperty Name="Data6Str" ColumnName="Data6Str" />
+                <ScalarProperty Name="Data7Str" ColumnName="Data7Str" />
+                <ScalarProperty Name="Data8Str" ColumnName="Data8Str" />
+                <ScalarProperty Name="Data9Str" ColumnName="Data9Str" />
+                <ScalarProperty Name="Data1MaxStr" ColumnName="Data1MaxStr" />
+                <ScalarProperty Name="Data1Int" ColumnName="Data1Int" />
+                <ScalarProperty Name="Data2Int" ColumnName="Data2Int" />
+                <ScalarProperty Name="Data3Int" ColumnName="Data3Int" />
+                <ScalarProperty Name="Data1BigInt" ColumnName="Data1BigInt" />
+                <ScalarProperty Name="Data1UniqueId" ColumnName="Data1UniqueId" />
+                <ScalarProperty Name="CustomAnnotations" ColumnName="CustomAnnotations" />
+                <ScalarProperty Name="CustomProperties" ColumnName="CustomProperties" />
+                <ScalarProperty Name="CustomArguments" ColumnName="CustomArguments" />
+                <ScalarProperty Name="ErrorNumber" ColumnName="ErrorNumber" />
+                <ScalarProperty Name="ErrorMessage" ColumnName="ErrorMessage" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ASJobsTables">
+            <EntityTypeMapping TypeName="TestDbModel.ASJobsTable">
+              <MappingFragment StoreEntitySet="ASJobsTable">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="JobIdentifier" ColumnName="JobIdentifier" />
+                <ScalarProperty Name="Sql" ColumnName="Sql" />
+                <ScalarProperty Name="LastRunTime" ColumnName="LastRunTime" />
+                <ScalarProperty Name="IsLastRunSuccess" ColumnName="IsLastRunSuccess" />
+                <ScalarProperty Name="LastErrorCode" ColumnName="LastErrorCode" />
+                <ScalarProperty Name="LastError" ColumnName="LastError" />
+                <ScalarProperty Name="PeriodInSeconds" ColumnName="PeriodInSeconds" />
+                <ScalarProperty Name="ConversationHandle" ColumnName="ConversationHandle" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ASOperationsHistoryTables">
+            <EntityTypeMapping TypeName="TestDbModel.ASOperationsHistoryTable">
+              <MappingFragment StoreEntitySet="ASOperationsHistoryTable">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UserLogin" ColumnName="UserLogin" />
+                <ScalarProperty Name="OperationId" ColumnName="OperationId" />
+                <ScalarProperty Name="Parameters" ColumnName="Parameters" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Message" ColumnName="Message" />
+                <ScalarProperty Name="Log" ColumnName="Log" />
+                <ScalarProperty Name="StartTime" ColumnName="StartTime" />
+                <ScalarProperty Name="EndTime" ColumnName="EndTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ASWfEventAnnotationSetsTables">
+            <EntityTypeMapping TypeName="TestDbModel.ASWfEventAnnotationSetsTable">
+              <MappingFragment StoreEntitySet="ASWfEventAnnotationSetsTable">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Annotations" ColumnName="Annotations" />
+                <ScalarProperty Name="AnnotationsChecksum" ColumnName="AnnotationsChecksum" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ASWfEventAnnotationsTables">
+            <EntityTypeMapping TypeName="TestDbModel.ASWfEventAnnotationsTable">
+              <MappingFragment StoreEntitySet="ASWfEventAnnotationsTable">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="AnnotationSetId" ColumnName="AnnotationSetId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Value" ColumnName="Value" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ASWfTrackingProfilesTables">
+            <EntityTypeMapping TypeName="TestDbModel.ASWfTrackingProfilesTable">
+              <MappingFragment StoreEntitySet="ASWfTrackingProfilesTable">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ASDBVersionTables">
+            <EntityTypeMapping TypeName="TestDbModel.ASDBVersionTable">
+              <MappingFragment StoreEntitySet="ASDBVersionTable">
+                <ScalarProperty Name="DbIdentity" ColumnName="DbIdentity" />
+                <ScalarProperty Name="MajorVersion" ColumnName="MajorVersion" />
+                <ScalarProperty Name="MinorVersion" ColumnName="MinorVersion" />
+                <ScalarProperty Name="BuildVersion" ColumnName="BuildVersion" />
+                <ScalarProperty Name="RevisionVersion" ColumnName="RevisionVersion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ASStagingTables">
+            <EntityTypeMapping TypeName="TestDbModel.ASStagingTable">
+              <MappingFragment StoreEntitySet="ASStagingTable">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ArchiveId" ColumnName="ArchiveId" />
+                <ScalarProperty Name="EventTypeId" ColumnName="EventTypeId" />
+                <ScalarProperty Name="E2EActivityId" ColumnName="E2EActivityId" />
+                <ScalarProperty Name="Computer" ColumnName="Computer" />
+                <ScalarProperty Name="EventSource" ColumnName="EventSource" />
+                <ScalarProperty Name="ProcessId" ColumnName="ProcessId" />
+                <ScalarProperty Name="TraceLevelId" ColumnName="TraceLevelId" />
+                <ScalarProperty Name="TimeCreated" ColumnName="TimeCreated" />
+                <ScalarProperty Name="Data1Str" ColumnName="Data1Str" />
+                <ScalarProperty Name="Data2Str" ColumnName="Data2Str" />
+                <ScalarProperty Name="Data3Str" ColumnName="Data3Str" />
+                <ScalarProperty Name="Data4Str" ColumnName="Data4Str" />
+                <ScalarProperty Name="Data5Str" ColumnName="Data5Str" />
+                <ScalarProperty Name="Data6Str" ColumnName="Data6Str" />
+                <ScalarProperty Name="Data7Str" ColumnName="Data7Str" />
+                <ScalarProperty Name="Data8Str" ColumnName="Data8Str" />
+                <ScalarProperty Name="Data9Str" ColumnName="Data9Str" />
+                <ScalarProperty Name="Data1MaxStr" ColumnName="Data1MaxStr" />
+                <ScalarProperty Name="Data1Int" ColumnName="Data1Int" />
+                <ScalarProperty Name="Data2Int" ColumnName="Data2Int" />
+                <ScalarProperty Name="Data3Int" ColumnName="Data3Int" />
+                <ScalarProperty Name="Data1BigInt" ColumnName="Data1BigInt" />
+                <ScalarProperty Name="Data1UniqueId" ColumnName="Data1UniqueId" />
+                <ScalarProperty Name="CustomAnnotations" ColumnName="CustomAnnotations" />
+                <ScalarProperty Name="CustomProperties" ColumnName="CustomProperties" />
+                <ScalarProperty Name="CustomArguments" ColumnName="CustomArguments" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ASTransferEventsTables">
+            <EntityTypeMapping TypeName="TestDbModel.ASTransferEventsTable">
+              <MappingFragment StoreEntitySet="ASTransferEventsTable">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="EventTypeId" ColumnName="EventTypeId" />
+                <ScalarProperty Name="EventSourceId" ColumnName="EventSourceId" />
+                <ScalarProperty Name="ProcessId" ColumnName="ProcessId" />
+                <ScalarProperty Name="TraceLevelId" ColumnName="TraceLevelId" />
+                <ScalarProperty Name="E2EActivityId" ColumnName="E2EActivityId" />
+                <ScalarProperty Name="ToE2EActivityId" ColumnName="ToE2EActivityId" />
+                <ScalarProperty Name="TimeCreated" ColumnName="TimeCreated" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ASWcfEventsTables">
+            <EntityTypeMapping TypeName="TestDbModel.ASWcfEventsTable">
+              <MappingFragment StoreEntitySet="ASWcfEventsTable">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="EventTypeId" ColumnName="EventTypeId" />
+                <ScalarProperty Name="EventSourceId" ColumnName="EventSourceId" />
+                <ScalarProperty Name="ProcessId" ColumnName="ProcessId" />
+                <ScalarProperty Name="TraceLevelId" ColumnName="TraceLevelId" />
+                <ScalarProperty Name="E2EActivityId" ColumnName="E2EActivityId" />
+                <ScalarProperty Name="TimeCreated" ColumnName="TimeCreated" />
+                <ScalarProperty Name="Data1UniqueIdentifier" ColumnName="Data1UniqueIdentifier" />
+                <ScalarProperty Name="Data1Str" ColumnName="Data1Str" />
+                <ScalarProperty Name="Data2Str" ColumnName="Data2Str" />
+                <ScalarProperty Name="Data3Str" ColumnName="Data3Str" />
+                <ScalarProperty Name="Data4Str" ColumnName="Data4Str" />
+                <ScalarProperty Name="Data1MaxStr" ColumnName="Data1MaxStr" />
+                <ScalarProperty Name="Data1Int" ColumnName="Data1Int" />
+                <ScalarProperty Name="Data2Int" ColumnName="Data2Int" />
+                <ScalarProperty Name="Data3Int" ColumnName="Data3Int" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ASWfEventPropertiesTables">
+            <EntityTypeMapping TypeName="TestDbModel.ASWfEventPropertiesTable">
+              <MappingFragment StoreEntitySet="ASWfEventPropertiesTable">
+                <ScalarProperty Name="EventId" ColumnName="EventId" />
+                <ScalarProperty Name="WfDataSourceId" ColumnName="WfDataSourceId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="ValueBlob" ColumnName="ValueBlob" />
+                <ScalarProperty Name="TimeCreated" ColumnName="TimeCreated" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ASWfEventsTables">
+            <EntityTypeMapping TypeName="TestDbModel.ASWfEventsTable">
+              <MappingFragment StoreEntitySet="ASWfEventsTable">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="EventTypeId" ColumnName="EventTypeId" />
+                <ScalarProperty Name="EventSourceId" ColumnName="EventSourceId" />
+                <ScalarProperty Name="ProcessId" ColumnName="ProcessId" />
+                <ScalarProperty Name="TraceLevelId" ColumnName="TraceLevelId" />
+                <ScalarProperty Name="WorkflowInstanceId" ColumnName="WorkflowInstanceId" />
+                <ScalarProperty Name="RecordNumber" ColumnName="RecordNumber" />
+                <ScalarProperty Name="TrackingProfileId" ColumnName="TrackingProfileId" />
+                <ScalarProperty Name="AnnotationSetId" ColumnName="AnnotationSetId" />
+                <ScalarProperty Name="TimeCreated" ColumnName="TimeCreated" />
+                <ScalarProperty Name="Data1Str" ColumnName="Data1Str" />
+                <ScalarProperty Name="Data2Str" ColumnName="Data2Str" />
+                <ScalarProperty Name="Data3Str" ColumnName="Data3Str" />
+                <ScalarProperty Name="Data4Str" ColumnName="Data4Str" />
+                <ScalarProperty Name="Data5Str" ColumnName="Data5Str" />
+                <ScalarProperty Name="Data6Str" ColumnName="Data6Str" />
+                <ScalarProperty Name="Data7Str" ColumnName="Data7Str" />
+                <ScalarProperty Name="Data8Str" ColumnName="Data8Str" />
+                <ScalarProperty Name="Data1MaxStr" ColumnName="Data1MaxStr" />
+                <ScalarProperty Name="Data1Int" ColumnName="Data1Int" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ASWfInstancesTables">
+            <EntityTypeMapping TypeName="TestDbModel.ASWfInstancesTable">
+              <MappingFragment StoreEntitySet="ASWfInstancesTable">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="WorkflowInstanceId" ColumnName="WorkflowInstanceId" />
+                <ScalarProperty Name="LatestRecordNumber" ColumnName="LatestRecordNumber" />
+                <ScalarProperty Name="LastEventSourceId" ColumnName="LastEventSourceId" />
+                <ScalarProperty Name="LastEventStatus" ColumnName="LastEventStatus" />
+                <ScalarProperty Name="StartTime" ColumnName="StartTime" />
+                <ScalarProperty Name="LastModifiedTime" ColumnName="LastModifiedTime" />
+                <ScalarProperty Name="CurrentDuration" ColumnName="CurrentDuration" />
+                <ScalarProperty Name="ExceptionCount" ColumnName="ExceptionCount" />
+                <ScalarProperty Name="LastAbortedTime" ColumnName="LastAbortedTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ASWfPropertyNamesTables">
+            <EntityTypeMapping TypeName="TestDbModel.ASWfPropertyNamesTable">
+              <MappingFragment StoreEntitySet="ASWfPropertyNamesTable">
+                <ScalarProperty Name="EventSourceId" ColumnName="EventSourceId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblUsers">
+            <EntityTypeMapping TypeName="TestDbModel.tblUser">
+              <MappingFragment StoreEntitySet="tblUser">
+                <ScalarProperty Name="UserClass" ColumnName="UserClass" />
+                <ScalarProperty Name="UserAge" ColumnName="UserAge" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,837 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{98423DB2-513A-42BE-865A-4D44B79E6553}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>WCFAPI</RootNamespace>
+    <AssemblyName>WCFAPI</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.Web.Services3, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Web.Services3.3.0.0.0\lib\net20\Microsoft.Web.Services3.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Messaging" />
+    <Reference Include="System.Net" />
+    <Reference Include="System.Net.Http">
+      <HintPath>..\packages\System.Net.Http.2.0.20126.16343\lib\net40\System.Net.Http.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Net.Http.Extensions, Version=2.2.29.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Net.Http.Formatting.Extension.5.2.3.0\lib\System.Net.Http.Extensions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Net.Http.Formatting.Extension.5.2.3.0\lib\System.Net.Http.Formatting.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Net.Http.Primitives, Version=4.2.29.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Net.Http.Formatting.Extension.5.2.3.0\lib\System.Net.Http.Primitives.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+      <HintPath>..\packages\System.Net.Http.2.0.20126.16343\lib\net40\System.Net.Http.WebRequest.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="forms\TCPServerClient.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="forms\TCPServerClient.Designer.cs">
+      <DependentUpon>TCPServerClient.cs</DependentUpon>
+    </Compile>
+    <Compile Include="lib\DuplexCallBack.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service References\DbOperationService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\DownloadServiceReference\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\SampleServiceReference\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\SecurityNoneService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\StartStopServiceReference\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\TimeOutService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\WCFAsyncServiceReference\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\WCFBaseClassService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\WCFClientAuth\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\WCFCusBindingService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\WCFDataTableService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\WCFDebugBehaviorReference\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\WCFDuplexNetTcpService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\WCFFaultService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\WCFHttp\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\WCFLibService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\WCFSecurityModeNoneReference\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\WCFSecurityModeReference\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\WCFTestServiceReference\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\WCFTimeOut\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Web References\ASMXService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
+    <Compile Include="Web References\WCFAuthAsmx\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\TCPServerClient.resx">
+      <DependentUpon>TCPServerClient.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <None Include="packages.config" />
+    <None Include="Properties\DataSources\System.Data.DataTable.datasource" />
+    <None Include="Properties\DataSources\WCFBaseClass.CompositeType.datasource" />
+    <None Include="Properties\DataSources\WCFBaseClass.Pet.datasource" />
+    <None Include="Properties\DataSources\WCFSample.CompositeType.datasource" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <None Include="Service References\DbOperationService\DbOperation.wsdl" />
+    <None Include="Service References\DbOperationService\DbOperation.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\DbOperationService\DbOperation1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\DbOperationService\DbOperation2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\DbOperationService\DbOperation3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\DbOperationService\WCFAPI.DbOperationService.CompositeType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DownloadServiceReference\DownloadService.wsdl" />
+    <None Include="Service References\DownloadServiceReference\item.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\DownloadServiceReference\item1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\DownloadServiceReference\item2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\DownloadServiceReference\WCFAPI.DownloadServiceReference.File.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SampleServiceReference\SampleService.wsdl" />
+    <None Include="Service References\SampleServiceReference\SampleService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\SampleServiceReference\SampleService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\SampleServiceReference\SampleService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\SampleServiceReference\SampleService3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\SecurityNoneService\service.wsdl" />
+    <None Include="Service References\SecurityNoneService\service.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\SecurityNoneService\service1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\StartStopServiceReference\item.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\StartStopServiceReference\item1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\StartStopServiceReference\StartStopService.wsdl" />
+    <None Include="Service References\TimeOutService\TimeOut1.wsdl" />
+    <None Include="Service References\TimeOutService\TimeOut3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\TimeOutService\TimeOut31.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\TimeOutService\TimeOut32.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\TimeOutService\WCFAPI.TimeOutService.CompositeType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WCFAsyncServiceReference\WCFAsync.wsdl" />
+    <None Include="Service References\WCFAsyncServiceReference\WCFAsync.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\WCFAsyncServiceReference\WCFAsync1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\WCFBaseClassService\WCFBaseClass.wsdl" />
+    <None Include="Service References\WCFBaseClassService\WCFBaseClass.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\WCFBaseClassService\WCFBaseClass1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\WCFBaseClassService\WCFBaseClass2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\WCFClientAuth\GestioneCheckinV1ImplService.wsdl" />
+    <None Include="Service References\WCFClientAuth\WCFAPI.WCFClientAuth.inviaMovimentazioneResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WCFClientAuth\WCFAPI.WCFClientAuth.risultatoGiorno.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WCFCusBindingService\Service1.wsdl" />
+    <None Include="Service References\WCFCusBindingService\Service1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\WCFCusBindingService\Service11.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\WCFCusBindingService\Service12.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\WCFCusBindingService\WCFAPI.WCFCusBindingService.CompositeType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WCFDataTableService\WCFAPI.WCFDataTableService.CompositeType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WCFDataTableService\WCFDataTable.wsdl" />
+    <None Include="Service References\WCFDataTableService\WCFDataTable.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\WCFDataTableService\WCFDataTable1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\WCFDataTableService\WCFDataTable2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\WCFDataTableService\WCFDataTable3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\WCFDebugBehaviorReference\item.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\WCFDebugBehaviorReference\item1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\WCFDebugBehaviorReference\WCFDebugBehavior.wsdl" />
+    <None Include="Service References\WCFDuplexNetTcpService\WCFDuplexNetTcp.wsdl" />
+    <None Include="Service References\WCFDuplexNetTcpService\WCFDuplexNetTcp.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\WCFDuplexNetTcpService\WCFDuplexNetTcp1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\WCFFaultService\Service1.wsdl" />
+    <None Include="Service References\WCFFaultService\Service11.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\WCFFaultService\Service12.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\WCFFaultService\Service13.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\WCFFaultService\Service14.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\WCFHttp\Service1.wsdl" />
+    <None Include="Service References\WCFHttp\Service1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\WCFHttp\Service11.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\WCFHttp\Service12.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\WCFHttp\WCFAPI.WCFHttp.CompositeType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WCFLibService\service.wsdl" />
+    <None Include="Service References\WCFLibService\service.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\WCFLibService\service1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\WCFLibService\WCFAPI.WCFLibService.GetDataResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WCFLibService\WCFAPI.WCFLibService.GetDataUsingDataContractResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WCFLibService\WCFAPI.WCFLibService.LoadStationsResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WCFLibService\WCFLib.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\WCFSecurityModeNoneReference\service.wsdl" />
+    <None Include="Service References\WCFSecurityModeNoneReference\service.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\WCFSecurityModeNoneReference\service1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\WCFSecurityModeNoneReference\WCFAPI.WCFSecurityModeNoneReference.CompositeType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WCFSecurityModeNoneReference\WCFSecurityModeNone.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\WCFSecurityModeReference\service.wsdl" />
+    <None Include="Service References\WCFSecurityModeReference\service.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\WCFSecurityModeReference\service1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\WCFSecurityModeReference\WCFAPI.WCFSecurityModeReference.CompositeType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WCFSecurityModeReference\WCFSecurityMode.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\WCFTestServiceReference\item.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\WCFTestServiceReference\item1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\WCFTestServiceReference\WCFTest.wsdl" />
+    <None Include="Service References\WCFTimeOut\TimeOut.wsdl" />
+    <None Include="Service References\WCFTimeOut\TimeOut.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\WCFTimeOut\TimeOut1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\WCFTimeOut\TimeOut2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\WCFTimeOut\WCFAPI.WCFTimeOut.CompositeType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Web References\ASMXService\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Web References\ASMXService\WebService1.wsdl" />
+    <None Include="Web References\WCFAuthAsmx\GestioneCheckinV1ImplService.wsdl" />
+    <None Include="Web References\WCFAuthAsmx\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Web References\WCFAuthAsmx\risultatoGiorno.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\DbOperationService\" />
+    <WCFMetadataStorage Include="Service References\DownloadServiceReference\" />
+    <WCFMetadataStorage Include="Service References\SampleServiceReference\" />
+    <WCFMetadataStorage Include="Service References\SecurityNoneService\" />
+    <WCFMetadataStorage Include="Service References\StartStopServiceReference\" />
+    <WCFMetadataStorage Include="Service References\TimeOutService\" />
+    <WCFMetadataStorage Include="Service References\WCFAsyncServiceReference\" />
+    <WCFMetadataStorage Include="Service References\WCFBaseClassService\" />
+    <WCFMetadataStorage Include="Service References\WCFClientAuth\" />
+    <WCFMetadataStorage Include="Service References\WCFCusBindingService\" />
+    <WCFMetadataStorage Include="Service References\WCFDataTableService\" />
+    <WCFMetadataStorage Include="Service References\WCFDebugBehaviorReference\" />
+    <WCFMetadataStorage Include="Service References\WCFDuplexNetTcpService\" />
+    <WCFMetadataStorage Include="Service References\WCFFaultService\" />
+    <WCFMetadataStorage Include="Service References\WCFHttp\" />
+    <WCFMetadataStorage Include="Service References\WCFLibService\" />
+    <WCFMetadataStorage Include="Service References\WCFSecurityModeNoneReference\" />
+    <WCFMetadataStorage Include="Service References\WCFSecurityModeReference\" />
+    <WCFMetadataStorage Include="Service References\WCFTestServiceReference\" />
+    <WCFMetadataStorage Include="Service References\WCFTimeOut\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\DbOperationService\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\DbOperationService\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\DbOperationService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\TimeOutService\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\TimeOutService\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\TimeOutService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\TimeOutService\TimeOut1.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\WCFDuplexNetTcpService\WCFDuplexNetTcp.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\WCFDuplexNetTcpService\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\WCFDuplexNetTcpService\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\WCFDuplexNetTcpService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\WCFAsync\WCFAsync.csproj">
+      <Project>{017126f5-d87d-43fb-b825-a421cc03c98d}</Project>
+      <Name>WCFAsync</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WCFBaseClass\WCFBaseClass.csproj">
+      <Project>{2b3c5b6a-48b1-497e-9a43-59e8884b95cb}</Project>
+      <Name>WCFBaseClass</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WCFConsoleSelfHost\WCFConsoleSelfHost.csproj">
+      <Project>{1fca7e3c-1d2f-4bb9-87db-06eba578f980}</Project>
+      <Name>WCFConsoleSelfHost</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WCFFaultException\WCFFaultException.csproj">
+      <Project>{f8d0c63f-a7a0-46ee-862e-a03e8e8d9891}</Project>
+      <Name>WCFFaultException</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WCFSample\WCFSample.csproj">
+      <Project>{52842834-c145-405c-9649-8b6087d39795}</Project>
+      <Name>WCFSample</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\SampleServiceReference\SampleService.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\SampleServiceReference\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\SampleServiceReference\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\SampleServiceReference\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\WCFBaseClassService\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\WCFBaseClassService\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\WCFBaseClassService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\WCFSecurityModeReference\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\WCFSecurityModeReference\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\WCFSecurityModeReference\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\WCFSecurityModeNoneReference\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\WCFSecurityModeNoneReference\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\WCFSecurityModeNoneReference\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\SecurityNoneService\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\SecurityNoneService\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\SecurityNoneService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\DownloadServiceReference\item.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\DownloadServiceReference\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\DownloadServiceReference\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\DownloadServiceReference\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\WCFHttp\Service1.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\WCFHttp\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\WCFHttp\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\WCFHttp\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\WCFAsyncServiceReference\WCFAsync.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\WCFAsyncServiceReference\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\WCFAsyncServiceReference\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\WCFAsyncServiceReference\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\StartStopServiceReference\item.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\StartStopServiceReference\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\StartStopServiceReference\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\StartStopServiceReference\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\WCFTestServiceReference\item.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\WCFTestServiceReference\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\WCFTestServiceReference\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\WCFTestServiceReference\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\WCFDataTableService\WCFDataTable.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\WCFDataTableService\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\WCFDataTableService\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\WCFDataTableService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\WCFDebugBehaviorReference\item.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\WCFDebugBehaviorReference\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\WCFDebugBehaviorReference\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\WCFDebugBehaviorReference\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\WCFCusBindingService\Service1.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\WCFCusBindingService\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\WCFCusBindingService\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\WCFCusBindingService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <WebReferences Include="Web References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WebReferenceUrl Include="http://localhost:37955/WebService1.asmx">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\ASMXService\</RelPath>
+      <UpdateFromURL>http://localhost:37955/WebService1.asmx</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>WCFAPI_ASMXService_WebService1</CachedSettingsPropName>
+    </WebReferenceUrl>
+    <WebReferenceUrl Include="https://rerprod.turitweb.it/ws/checkinV1%3fwsdl">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\WCFAuthAsmx\</RelPath>
+      <UpdateFromURL>https://rerprod.turitweb.it/ws/checkinV1%3fwsdl</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>WCFAPI_WCFAuthAsmx_GestioneCheckinV1ImplService</CachedSettingsPropName>
+    </WebReferenceUrl>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Web References\ASMXService\WebService1.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\WCFTimeOut\TimeOut.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\WCFTimeOut\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\WCFTimeOut\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\WCFTimeOut\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\WCFLibService\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\WCFLibService\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\WCFLibService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\WCFFaultService\configuration91.svcinfo" />
+    <None Include="Service References\WCFFaultService\configuration.svcinfo" />
+    <None Include="Service References\WCFFaultService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Service References\WCFClientAuth\configuration91.svcinfo" />
+    <None Include="Service References\WCFClientAuth\configuration.svcinfo" />
+    <None Include="Service References\WCFClientAuth\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <Content Include="XML.xml" />
+    <Content Include="XMLOK.xml" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,43 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Call WCF Service using jQuery</title>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.10.2.js"></script>
+    <script type="text/javascript">
+
+        $(function () {
+            var p = { "LstData": 123 };
+            $.ajax({
+                type: "POST",
+                contentType: "application/json; charset=utf-8",
+                url: 'http://localhost:39668/RestService.svc/CPSendInfo',
+                data: JSON.stringify(p),
+                datatype:'json',
+                success: function (data) {
+                    //$.each(data.input_data, function (key, value) {
+                    //    console.log(key + ' : ' + value);
+                    //});
+                    console.log(data.COSendTubeInfoResult);
+                    console.log(data.ErrMsg);
+                    //console.log(JSON.stringify(data));
+                    //data.each(function (index, value) {
+                    //        console.log(index + " "+value);
+                    //    });
+                    //$($.parseJSON(data.d)).each(function (index, value) {
+                    //    console.log(index + " "+value);
+                    //});
+                },
+                error: function (result) {
+                    alert(result);
+                }
+            });
+
+        });
+        // });
+    </script>
+
+</head>
+<body>
+</body> 
+</html>

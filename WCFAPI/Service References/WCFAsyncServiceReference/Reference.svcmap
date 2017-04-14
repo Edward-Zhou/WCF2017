@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="ec963a33-2842-4368-b5dd-7c7ea4a3b3d5" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:1045/WCFAsync.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="WCFAsync.disco" MetadataType="Disco" ID="48532161-f091-4587-abc3-25f3b401b8ae" SourceId="1" SourceUrl="http://localhost:1045/WCFAsync.svc?disco" />
+    <MetadataFile FileName="WCFAsync.xsd" MetadataType="Schema" ID="7c359564-cd73-4d99-a8a2-d4ab59404a90" SourceId="1" SourceUrl="http://localhost:1045/WCFAsync.svc?xsd=xsd1" />
+    <MetadataFile FileName="WCFAsync1.xsd" MetadataType="Schema" ID="c05fd275-3d24-4f30-a4bb-333e589233b2" SourceId="1" SourceUrl="http://localhost:1045/WCFAsync.svc?xsd=xsd0" />
+    <MetadataFile FileName="WCFAsync.wsdl" MetadataType="Wsdl" ID="3d986008-5985-4f7f-a2fc-3084fdcd6815" SourceId="1" SourceUrl="http://localhost:1045/WCFAsync.svc?wsdl" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

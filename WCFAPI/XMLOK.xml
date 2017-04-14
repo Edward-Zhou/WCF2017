@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <test1>1</test1>
+  <test2>2</test2>
+  <remove>
+    <test3>
+      3
+    </test3>
+  </remove>
+</root>
